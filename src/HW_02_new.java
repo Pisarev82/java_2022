@@ -12,10 +12,23 @@ public class HW_02_new {
     private static final Logger log = Logger.getLogger(HW_02_new.class.getName());
     public static void main(String[] args) {
 
+        // Распарсить файл с логами из заданий, выполненных на семинаре, найти записи уровня INFO/DEBUG.
+        // Файл при первом запуске выдаст ошибку, которая запишеться в файл, и больше ошибки не будет.
+        FirstTast firstTast = new FirstTast();
+        System.out.println(firstTast.logData());
 
-        // Создаем логгер из встроенного класса util
-        // И записываем некоторые данные в txt файал, что бы потом было что читать и парсить.
+        Bubblesort bubblesort = new Bubblesort();
+        bubblesort.printArr();
+        bubblesort.bubbleSort();
+    }
 
+}
+class MyLogger {
+    // Создаем логгер из встроенного класса util
+    // И записываем некоторые данные в txt файал, что бы потом было что читать и парсить.
+    private static final Logger log = Logger.getLogger("MyLogger");
+
+    static {
         FileHandler fh;
 
         try {
@@ -23,28 +36,21 @@ public class HW_02_new {
             log.addHandler(fh);
             SimpleFormatter formatter = new SimpleFormatter();
             fh.setFormatter(formatter);
-
         }catch (IOException e) {
             log.log(Level.SEVERE, e.getMessage());
         }
-//
-//        log.log(Level.INFO, "msgSupplier");
-//        log.log(Level.WARNING, "Запись лога с уровнем WARNING (Предупреждение)");
-//        log.log(Level.SEVERE, "Запись лога с уровнем SEVERE (серъёзная ошибка)");
-
-
-        // Распарсить файл с логами из заданий, выполненных на семинаре, найти записи уровня INFO/DEBUG.
-        FirstTast firstTast = new FirstTast();
-        System.out.println(firstTast.logData());
-
-        Bubblesort bubblesort = new Bubblesort(log);
-        bubblesort.fillArr();
     }
 
+    public static void writeLog (String messeg){
+        log.log(Level.INFO, "msgSupplier");
+    }
+
+    public static void writeLog (String messeg, Exception e){
+        log.log(Level.WARNING, "msgSupplier", e);
+    }
 }
-
 class FirstTast {
-
+    // Распарсить файл с логами из заданий, выполненных на семинаре, найти записи уровня INFO/DEBUG.
     ArrayList logData(){
         ArrayList<String> logDataArr = new ArrayList<>();
         try {
@@ -55,8 +61,10 @@ class FirstTast {
                 logDataArr.add((line));
             }
         } catch (FileNotFoundException e) {
+            MyLogger.writeLog(" ", e);
             throw new RuntimeException(e);
         } catch (IOException e) {
+            MyLogger.writeLog(" ", e);
             throw new RuntimeException(e);
         }
 
@@ -66,25 +74,52 @@ class FirstTast {
 }
 
 class Bubblesort {
+//    Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой итерации запишите в лог-файл
+    private int[] arr = new int[100];
 
-    int[] arr = new int[100];
-    Logger log;
-    Bubblesort (Logger log){
-        this.log = log;
-    };
-
-    void fillArr(){
+    public Bubblesort () {
         for (int index = 0; index < arr.length; index++) {
-            arr[index] = new Random().nextInt(1,200);
-        }
-        for (int each: arr){
-
+            arr[index] = new Random().nextInt(1, 200);
         }
     }
-
-    void bubbleSort(){
-        log.log(Level.INFO, "msgSupplier");
+    public Bubblesort (int[] arr) {
+        this.arr = arr;
     }
 
+    public void bubbleSort(){
+//  Добавит запись каждой итерации      MyLogger.writeLog("test");
+        int countStar = 0;
+        int countEnd = 0;
+        int countIter = 0;
+        int temp = 0;
+        boolean flag = true;
+        do {
+            for (int i = 0; i < arr.length-1; i++){
+                if (arr[i] > arr[i+1]) {
+                    temp = arr[i+1];
+                    arr[i+1] = arr[i];
+                    arr[i] = temp;
+                    countEnd++;
+                }
+            }
+            printArr();
+            ++countIter;
+            if (countStar == countEnd) {
+                flag = false;
+            }
+            else {
+                countEnd = 0;
+            }
+        }while (flag);
+        System.out.printf("Отсоратированно за %d проходов \n", countIter);
+        System.out.println(temp);
+    }
 
+    public void printArr () {
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public int[] getArr() {
+        return arr;
+    }
 }
