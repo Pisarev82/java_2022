@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class HW_02_new {
-    private static final Logger log = Logger.getLogger(HW_02_new.class.getName());
+
     public static void main(String[] args) {
 
         // Распарсить файл с логами из заданий, выполненных на семинаре, найти записи уровня INFO/DEBUG.
-        // Файл при первом запуске выдаст ошибку, которая запишеться в файл, и больше ошибки не будет.
+        // Файл при первом запуске выдаст ошибку, которая запишеться в файл, и больше ошибки не будет
         FirstTast firstTast = new FirstTast();
         System.out.println(firstTast.logData());
 
