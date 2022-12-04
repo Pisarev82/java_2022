@@ -16,8 +16,13 @@ public class HW_02_new {
         // Файл при первом запуске выдаст ошибку, которая запишеться в файл, и больше ошибки не будет
         FirstTast firstTast = new FirstTast();
         System.out.println(firstTast.logData());
+        int[] arr = new int[50];
+        Bubblesort bubblesort = new Bubblesort(arr);
 
-        Bubblesort bubblesort = new Bubblesort();
+            for (int index = 0; index < arr.length; index++) {
+                arr[index] = new Random().nextInt(1, 200);
+
+        }
         bubblesort.printArr();
         bubblesort.bubbleSort();
     }
@@ -66,6 +71,7 @@ class FirstTast {
         } catch (IOException e) {
             MyLogger.writeLog(" ", e);
             throw new RuntimeException(e);
+
         }
 
         return logDataArr;
@@ -93,7 +99,7 @@ class Bubblesort {
         int countIter = 0;
         int temp = 0;
         boolean flag = true;
-        do {
+        while (flag){
             for (int i = 0; i < arr.length-1; i++){
                 if (arr[i] > arr[i+1]) {
                     temp = arr[i+1];
@@ -110,7 +116,7 @@ class Bubblesort {
             else {
                 countEnd = 0;
             }
-        }while (flag);
+        };
         System.out.printf("Отсоратированно за %d проходов \n", countIter);
         System.out.println(temp);
     }
