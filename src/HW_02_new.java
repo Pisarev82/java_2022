@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,14 +18,16 @@ public class HW_02_new {
         FirstTast firstTast = new FirstTast();
         System.out.println(firstTast.logData());
         int[] arr = new int[50];
-        Bubblesort bubblesort = new Bubblesort(arr);
-
-            for (int index = 0; index < arr.length; index++) {
-                arr[index] = new Random().nextInt(1, 200);
-
+        for (int index = 0; index < arr.length; index++) {
+            arr[index] = new Random().nextInt(1, 200);
         }
+        Bubblesort bubblesort = new Bubblesort(arr);
         bubblesort.printArr();
         bubblesort.bubbleSort();
+
+        SimplCalc simplCalc = new SimplCalc();
+        simplCalc.simplCalc();
+
     }
 
 }
@@ -127,5 +130,42 @@ class Bubblesort {
 
     public int[] getArr() {
         return arr;
+    }
+}
+
+class SimplCalc {
+    void simplCalc() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Введите первое число: ");
+        double x = sc.nextDouble();
+        System.out.print("Введите математический оператор: ");
+        char oper = sc.next().charAt(0);
+        System.out.print("Введите второе число: ");
+        double y = sc.nextDouble();
+        sc.close();
+        String result = "";
+        switch (oper) {
+            case '+':
+                result = String.format("%.2f + %.2f = %.2f", x, y, x + y);
+                break;
+            case '-':
+                result = String.format("%.2f - %.2f = %.2f", x, y, x - y);
+                break;
+            case '*':
+                result = String.format("%.2f * %.2f = %.2f", x, y, x * y);
+                break;
+            case '/':
+                result = String.format("%.2f / %.2f = %.2f", x, y, x / y);
+                break;
+        }
+        MyLogger.writeLog(result);
+        System.out.println(result);
+    }
+}
+
+class TaskFour {
+
+    void jsonRead () {
+
     }
 }
