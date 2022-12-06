@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+
 public class HW_02_new {
 
     public static void main(String[] args) {
@@ -17,6 +18,9 @@ public class HW_02_new {
         // Файл при первом запуске выдаст ошибку, которая запишеться в файл, и больше ошибки не будет
         FirstTast firstTast = new FirstTast();
         System.out.println(firstTast.logData());
+
+
+        // Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой итерации запишите в лог-файл.
         int[] arr = new int[50];
         for (int index = 0; index < arr.length; index++) {
             arr[index] = new Random().nextInt(1, 200);
@@ -25,6 +29,8 @@ public class HW_02_new {
         bubblesort.printArr();
         bubblesort.bubbleSort();
 
+
+        // К калькулятору из предыдущего дз добавить логирование.
         SimplCalc simplCalc = new SimplCalc();
         simplCalc.simplCalc();
 
@@ -160,12 +166,5 @@ class SimplCalc {
         }
         MyLogger.writeLog(result);
         System.out.println(result);
-    }
-}
-
-class TaskFour {
-
-    void jsonRead () {
-
     }
 }
