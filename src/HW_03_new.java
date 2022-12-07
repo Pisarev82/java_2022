@@ -5,8 +5,10 @@ import java.util.Random;
 public class HW_03_new {
     public static void main(String[] args) {
         // Реализовать алгоритм сортировки слиянием
+
         MergeSort mergeSort = new MergeSort();
         mergeSort.sortArray();
+
 
 
         // Пусть дан произвольный список целых чисел, удалить из него четные числа
@@ -43,7 +45,7 @@ class MergeSort {
     private ArrayList<Integer> arrayListResult = new ArrayList<>();
 
     public MergeSort () {
-        for (int index = 0; index < 150; index++) {
+        for (int index = 0; index < 13; index++) {
             arrayList.add(new Random().nextInt(1, 200));
         }
         System.out.println("Исходный массив        " + arrayList.toString());
@@ -56,12 +58,9 @@ class MergeSort {
     public void sortArray () {
         int step = 1;
         ArrayList<Integer> sortArray = sortArrayIter(arrayList, 0, 1);
-
         step *= 2;
         while (step < sortArray.size() ){
             sortArray = sortArrayIter(sortArray, 0, step);
-
-
             step *=2;
         }
         System.out.println("Отсортированный массив " + sortArray);
