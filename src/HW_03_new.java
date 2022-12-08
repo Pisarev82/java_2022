@@ -45,7 +45,7 @@ class MergeSort {
     private ArrayList<Integer> arrayListResult = new ArrayList<>();
 
     public MergeSort () {
-        for (int index = 0; index < 13; index++) {
+        for (int index = 0; index < 1000000; index++) {
             arrayList.add(new Random().nextInt(1, 200));
         }
         System.out.println("Исходный массив        " + arrayList.toString());
