@@ -10,9 +10,11 @@ public class Main {
         taska01.addPhone("Александр ", " 222");
         taska01.addPhone("Николай ", " 222");
 
+
         Task3 task3 = new Task3();
+        task3.tranleterimToArabic("MMXXII");
 
-        task3.tranleterimToArabic("MCDXIV");
-
+        Task2 task2 = new Task2();
+        task2.recurringNames();
     }
 }
