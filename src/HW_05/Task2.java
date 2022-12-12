@@ -44,9 +44,10 @@ public class Task2 {
 
         repeatOfNames.sort(Collections.reverseOrder());
 
-
+        int valioBefor = 1;
         for (int each: repeatOfNames ) {
-            if (each == 1) {
+            if (each == valioBefor) {
+                valioBefor = each;
                 continue;
             }
             for (Map.Entry<String, Integer> entry : recurringNames.entrySet()) {
@@ -54,6 +55,7 @@ public class Task2 {
                     System.out.println(entry.getKey() + " повторяется " + each + " раз.");
                 }
             }
+            valioBefor = each;;
         }
     }
 }
